@@ -673,6 +673,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun generateBarcodePreview(value: String) {
+        try {
+            val format = when (binding.spinnerBarcodeType.selectedItemPosition) {
+                0 -> BarcodeFormat.CODE_128
+                1 -> BarcodeFormat.CODE_39
+                2 -> BarcodeFormat.EAN_13
+                3 -> BarcodeFormat.QR_CODE
+                4 -> BarcodeFormat.UPC_A
+                else -> BarcodeFormat.CODE_128
+            }
+            val w = if (format == BarcodeFormat.QR_CODE) 200 else 400
+            val h = if (format == BarcodeFormat.QR_CODE) 200 else 100
+            val matrix = MultiFormatWriter().encode(value, format, w, h)
+            val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565)
+            for (x in 0 until w) for (y in 0 until h)
+                bmp.setPixel(x, y, if (matrix[x, y]) 0xFF000000.toInt() else 0xFFFFFFFF.toInt())
+            binding.imgBarcodePreview.setImageBitmap(bmp)
+            binding.imgBarcodePreview.visibility = android.view.View.VISIBLE
+            binding.tvBarcodePreviewValue.text = value
+            binding.tvBarcodePreviewValue.visibility = android.view.View.VISIBLE
+        } catch (e: Exception) {
+            binding.imgBarcodePreview.visibility = android.view.View.GONE
+            binding.tvBarcodePreviewValue.visibility = android.view.View.GONE
+        }
+    }
+
     private fun printBarcode() {
         val value = binding.etBarcodeValue.text.toString().trim()
         if (value.isEmpty())  { toast("⚠️ أدخل قيمة الباركود"); return }
