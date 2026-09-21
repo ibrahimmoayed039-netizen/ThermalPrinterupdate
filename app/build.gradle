@@ -11,8 +11,35 @@ android {
         applicationId = "com.mustfa.printer"
         minSdk = 23
         targetSdk = 34
-        versionCode = 1        // ⬅️ رقم الإصدار الحالي — زِد هذا عند كل تحديث
-        versionName = "1.0"   // ⬅️ اسم الإصدار الظاهر للمستخدم
+        versionCode = 2         // ⬅️ رقم الإصدار الحالي — زِد هذا عند كل تحديث
+        versionName = "1.0.2"  // ⬅️ اسم الإصدار الظاهر للمستخدم
+    }
+
+    signingConfigs {
+        release {
+            def ksPath = System.getenv("RELEASE_KEYSTORE_PATH")
+            if (ksPath) {
+                storeFile = file(ksPath)
+                storePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("RELEASE_KEY_ALIAS")
+                keyPassword = System.getenv("RELEASE_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            // نفس مفتاح التوقيع الدائم حتى في نسخة debug
+            // ليقبل النظام تثبيت التحديث فوق النسخة القديمة بدون حذفها
+            if (System.getenv("RELEASE_KEYSTORE_PATH")) {
+                signingConfig = signingConfigs.release
+            }
+        }
+        release {
+            if (System.getenv("RELEASE_KEYSTORE_PATH")) {
+                signingConfig = signingConfigs.release
+            }
+        }
     }
 
     buildFeatures { viewBinding = true }
