@@ -20,18 +20,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew || true
-
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-
-      - name: Generate Gradle wrapper (if missing)
-        run: |
-          if [ ! -f "./gradlew" ]; then
-            gradle wrapper --gradle-version 8.0
-            chmod +x ./gradlew
-          fi
+        with:
+          gradle-version: '8.2'
 
       - name: Decode signing keystore
         run: echo "${{ secrets.RELEASE_KEYSTORE_B64 }}" | base64 -d > "$RUNNER_TEMP/release.jks"
@@ -42,7 +34,7 @@ jobs:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-        run: ./gradlew assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
 
       - name: Locate APK
         id: apk
