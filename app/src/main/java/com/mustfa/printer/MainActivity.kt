@@ -830,18 +830,15 @@ class MainActivity : AppCompatActivity() {
 
                     val imgHex = com.dantsu.escposprinter.textparser.PrinterTextParserImg
                         .bitmapToHexadecimalString(printer!!, bmp)
-                    printer!!.printFormattedText("[C]$imgHex
-")
+                    printer!!.printFormattedText("[C]$imgHex\n")
 
                     // فاصل بين الصفحات
-                    if (i < pageCount - 1) printer!!.printFormattedText("
-")
+                    if (i < pageCount - 1) printer!!.printFormattedText("\n")
                 }
 
                 renderer.close()
                 fd.close()
-                printer!!.printFormattedTextAndCut("
-")
+                printer!!.printFormattedTextAndCut("\n")
                 tmpFile.delete()
 
                 withContext(Dispatchers.Main) {

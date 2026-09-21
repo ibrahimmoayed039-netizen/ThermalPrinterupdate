@@ -449,7 +449,7 @@
                 android:id="@+id/progressPdf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:style="@android:style/Widget.ProgressBar.Horizontal"
                 android:indeterminate="true"
                 android:visibility="gone"
                 android:layout_marginTop="6dp"/>
