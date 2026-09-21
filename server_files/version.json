@@ -1,0 +1,8 @@
+{
+  "versionCode": 2,
+  "versionName": "1.1",
+  "apkUrl": "https://YOUR_SERVER/ThermalPrinter_v1.1.apk",
+  "changeLog": "- إصلاح مشكلة التوقف عند كثرة العملاء\n- تحسين سرعة طباعة الباركود\n- دعم طابعات 80mm بشكل أفضل",
+  "forced": false,
+  "minSupportedVersion": 1
+}

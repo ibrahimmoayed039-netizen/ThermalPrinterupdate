@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="#E94560"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="اعدادات الطابعة"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- عرض الطابعة -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:elevation="2dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="عرض الطابعة"
+                android:textColor="#E94560"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioGroup
+                android:id="@+id/rgPrinterWidth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rb58mm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="58mm (الأكثر شيوعاً - حرارية صغيرة)"
+                    android:textColor="#1A1A2E"
+                    android:buttonTint="#E94560"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/rb80mm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="80mm (طابعات المطاعم والفواتير)"
+                    android:textColor="#1A1A2E"
+                    android:buttonTint="#E94560"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- ترميز النص العربي -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:elevation="2dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ترميز النص العربي"
+                android:textColor="#E94560"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="إذا ظهرت مربعات بدل الحروف العربية، غير هذا الإعداد"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"/>
+
+            <RadioGroup
+                android:id="@+id/rgCharset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rbCharsetWindows1256"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="Windows-1256 (عربي - الافتراضي)"
+                    android:textColor="#1A1A2E"
+                    android:buttonTint="#E94560"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/rbCharsetISO8859"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="ISO-8859-6 (عربي بديل)"
+                    android:textColor="#1A1A2E"
+                    android:buttonTint="#E94560"/>
+
+                <RadioButton
+                    android:id="@+id/rbCharsetUTF8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="UTF-8 (إذا كانت الطابعة تدعمه)"
+                    android:textColor="#1A1A2E"
+                    android:buttonTint="#E94560"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- رقم الـ ESC/POS للعربي -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="رقم الكود الخاص بالطابعة (Code Page)"
+                android:textColor="#E94560"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="جرب قيم مختلفة إذا ظهرت مربعات: 6، 16، 33، 40"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp"/>
+
+            <android.widget.EditText
+                android:id="@+id/etCodePage"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="رقم Code Page (افتراضي: 6)"
+                android:inputType="number"
+                android:textColor="#1A1A2E"
+                android:textColorHint="#AAAAAA"
+                android:background="#F5F5F5"
+                android:padding="12dp"
+                android:gravity="end|center_vertical"
+                android:text="6"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSaveSettings"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="حفظ الإعدادات"
+            android:backgroundTint="#E94560"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+</ScrollView>
